@@ -6,7 +6,7 @@ public  class ColumnNames {
 
     public  HashMap<Integer, String> columnMappings = new HashMap();
 
-    public HashMap getColumnMappings() {
+    public HashMap<Integer, String> getColumnMappings() {
 
         columnMappings.put(1, "A");
         columnMappings.put(2, "B");

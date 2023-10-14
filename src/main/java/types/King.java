@@ -1,36 +1,35 @@
 package types;
 
-import utils.ColumnNames;
-import utils.Cordinate;
 
+import exception.MoveNotPossibleException;
+import utils.Cordinate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 
-public class King extends Piece {
+public class King implements Piece {
 
 
-    public HashMap findMovesInAllDirections(int n, int x, int y, int xinc, int yinc) {
-        HashMap m = new HashMap();
+    public boolean isValidPosition(int n, int row, int column) {
+        return (row <=n && row >=1 && column <=n && column >=1);
+    }
+
+
+    public List<Cordinate> findAllMovesByCordinate(int n, int row, int column, int rowInc, int columnInc)  {
+        List<Cordinate> moves = new ArrayList<Cordinate>();
         Cordinate c = new Cordinate();
-        x += xinc;
-        y += yinc;
-        c.row = x;
-        c.column = y;
-        if (isValidKingQueenPosition(n, x, y)) {
-            m.put(c, c);
+        row += rowInc;
+        column += columnInc;
+        c.row = row;
+        c.column = column;
+        if (isValidPosition(n, row, column)) {
+            moves.add(c);
         }
-        return m;
+        return moves;
     }
 
-    public List<String> move(int i, int row, int column) {
-        List finalKingMoves = new ArrayList<String>();
-        for (Cordinate cordinate : new Cordinate().getListOfValidCordinates()) {
-            prepareFinalMoves(row, column, cordinate.row, cordinate.column, finalKingMoves);
-        }
-        return finalKingMoves;
-    }
+
+
 
 }
 

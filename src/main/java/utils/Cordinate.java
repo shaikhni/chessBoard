@@ -1,5 +1,6 @@
 package utils;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -34,16 +35,16 @@ public class Cordinate {
     }
 
 
-    public Set<Cordinate> getListOfValidCordinates(){
-        Set<Cordinate> cordinates = new HashSet<Cordinate>();
+    public List<Cordinate> getListOfValidCordinates(){
+        List<Cordinate> cordinates = new ArrayList<Cordinate>();
         cordinates.add(new Cordinate(1,0));
+        cordinates.add(new Cordinate(1,1));
         cordinates.add(new Cordinate(1,-1));
         cordinates.add(new Cordinate(0,-1));
+        cordinates.add(new Cordinate(0,1));
         cordinates.add(new Cordinate(-1,-1));
         cordinates.add(new Cordinate(-1,0));
         cordinates.add(new Cordinate(-1,1));
-        cordinates.add(new Cordinate(0,1));
-        cordinates.add(new Cordinate(1,1));
         return cordinates;
     }
 }

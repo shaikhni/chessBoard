@@ -1,48 +1,40 @@
 package types;
 
+import exception.MoveNotPossibleException;
 import utils.ColumnNames;
 import utils.Cordinate;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 
-public class Piece {
+public interface Piece {
 
 
-    public boolean isValidPawnPosition(int n, int x, int y){
-        return (x<n && x>1 && y<n && y>1);
-    }
+    public  boolean isValidPosition(int n, int row, int column);
 
-    public boolean isValidKingQueenPosition(int n, int x, int y){
-        return (x<=n && x>=1 && y<=n && y>=1);
-    }
 
-    public HashMap findMovesInAllDirections(int n, int x, int y, int xinc, int yinc) {
-        HashMap m = new HashMap();
-        if (isValidPawnPosition(n, x, y)) {
-            Cordinate c = new Cordinate();
-            x+= xinc;
-            y+= yinc;
-            c.row = x;
-            c.column = y;
-            m.put(c,c);
+    default  List<String> getMovesForAllCordinates(int i, int row, int column, List<Cordinate> possibleCordinates) throws MoveNotPossibleException {
+        List finalTypeMoves = new ArrayList<String>();
+        for (Cordinate cordinate : possibleCordinates) {
+            getAllMovesByCordinate(row, column, cordinate.row, cordinate.column, finalTypeMoves);
         }
-        return m;
+        return finalTypeMoves;
     }
 
-
-    public void prepareFinalMoves(int row, int column, int xinc, int yinc, List<Cordinate> finalQueenMoves) {
-        HashMap queenList = findMovesInAllDirections(8, row, column,xinc,yinc);
-        addEachMoveToTheList(finalQueenMoves, queenList);
+    default void getAllMovesByCordinate(int row, int column, int rowInc, int columnInc, List<Cordinate> finalTypeMoves) throws MoveNotPossibleException {
+        List typeMoveList = findAllMovesByCordinate(8, row, column,rowInc,columnInc);
+        addEachMoveToTheList(finalTypeMoves, typeMoveList);
     }
 
-    private void addEachMoveToTheList(List finalKingMoves, HashMap queenList) {
-        for (Object name :  queenList.keySet()) {
-            Cordinate cordinate = (Cordinate)name;
+    public  List<Cordinate> findAllMovesByCordinate(int n, int row, int column, int rowInc, int columnInc) throws MoveNotPossibleException ;
+
+
+    default void addEachMoveToTheList(List finalTypeMoves, List<Cordinate> typeList) {
+        for (Cordinate cordinate :  typeList) {
             Integer columnMapping = cordinate.column;
             String  columnToMove = (String) new ColumnNames().getColumnMappings().get(columnMapping);
             System.out.println(columnToMove + cordinate.row);
-            finalKingMoves.add(columnToMove + cordinate.row);
+            finalTypeMoves.add(columnToMove + cordinate.row);
         }
     }
 

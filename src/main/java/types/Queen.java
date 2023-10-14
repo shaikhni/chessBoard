@@ -1,50 +1,34 @@
 package types;
 
 
-import utils.ColumnNames;
+import exception.MoveNotPossibleException;
 import utils.Cordinate;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 
-public class Queen extends Piece {
+public class Queen implements Piece {
 
-
-    /*public boolean isValidPosition(int n, int x, int y){
-        return (x<=n && x>=1 && y<=n && y>=1);
-    }*/
-
-
-public HashMap findMovesInAllDirections(int n, int row, int column, int xinc, int yinc) {
-    HashMap m = new HashMap();
-    while (isValidKingQueenPosition(n, row, column)) {
-            Cordinate c = new Cordinate();
-            row+= xinc;
-            column+= yinc;
-            c.row = row;
-            c.column = column;
-            if(row<=n && column<=n && row>=1 && column>=1) {
-                m.put(c, c);
-            }
-        }
-return m;
-}
-
-
-    public List<String> move(int i, int row, int column){
-        List finalQueenMoves = new ArrayList<String>();
-        for (Cordinate cordinate : new Cordinate().getListOfValidCordinates()) {
-            prepareFinalMoves(row, column,cordinate.row,cordinate.column, finalQueenMoves);
-        }
-        return finalQueenMoves;
+    public boolean isValidPosition(int n, int row, int column) {
+        return (row <=n && row >=1 && column <=n && column >=1);
     }
 
 
-
-
-
+    public List<Cordinate> findAllMovesByCordinate(int n, int row, int column, int rowInc, int columnInc)  {
+        List<Cordinate> moves = new ArrayList<Cordinate>();
+        while (isValidPosition(n, row, column)) {
+            Cordinate c = new Cordinate();
+            row+= rowInc;
+            column+= columnInc;
+            c.row = row;
+            c.column = column;
+            if(row<=n && column<=n && row>=1 && column>=1) {
+                moves.add(c);
+            }
+        }
+        return moves;
+    }
 
 
 }
