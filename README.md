@@ -7,7 +7,4 @@
 
 
 # What do you I mean by Cordinates?
-- <img width="343" alt="Screenshot 2023-10-15 at 11 10 51 PM" src="https://github.com/shaikhni/chessBoard/assets/29041488/301ad741-8dae-4716-8b57-88066cd4f510">                       
-
-
-
+- <img width="613" alt="Screenshot 2023-10-15 at 11 25 33 PM" src="https://github.com/shaikhni/chessBoard/assets/29041488/cc64c2c2-fc3c-4e8e-89b5-d477e75b0e84">
