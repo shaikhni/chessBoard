@@ -9,4 +9,3 @@
 
 
 
-<img width="488" alt="Screenshot 2023-10-15 at 12 11 38 AM" src="https://github.com/shaikhni/chessBoard/assets/29041488/e177a347-51f5-4091-b053-8a677a4b6034">
