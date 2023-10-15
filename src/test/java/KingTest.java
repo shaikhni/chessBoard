@@ -31,6 +31,8 @@ public class KingTest {
 
     @After
     public void tearDown() throws Exception {
+        this.piece = null;
+        this.pieceFactory = null;
     }
 
 
