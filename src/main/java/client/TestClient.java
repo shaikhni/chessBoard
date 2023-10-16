@@ -37,7 +37,7 @@ public class TestClient {
         PieceFactory pieceFactory = new PieceFactory();
         try {
             Piece piece = pieceFactory.getPiece(type);
-            piece.getMovesForAllCordinates(size, row, columnAsInt, getPossibleCordinates(type));
+            piece.getMovesForAllCordinates(size, row, columnAsInt, piece.getPossibleCordinates(type));
         } catch (MoveNotPossibleException e) {
             e.printStackTrace();
         }
@@ -51,21 +51,8 @@ public class TestClient {
                 columnAsInt = entry.getKey();
                 break;
             }
-
         }
-
         return columnAsInt;
-
-    }
-
-    private static List<Cordinate> getPossibleCordinates(String pieceType) {
-        List<Cordinate> allPossibleCordinates = new Cordinate().getListOfValidCordinates();
-        if (pieceType.equalsIgnoreCase("pawn")) {
-            List<Cordinate> pawnCoridnates = new ArrayList<Cordinate>();
-            pawnCoridnates.add(allPossibleCordinates.get(0));
-            return pawnCoridnates;
-        }
-        return allPossibleCordinates;
     }
 
 
