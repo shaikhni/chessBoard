@@ -38,4 +38,14 @@ public interface Piece {
         }
     }
 
+    default List<Cordinate> getPossibleCordinates(String pieceType) {
+        List<Cordinate> allPossibleCordinates = new Cordinate().getListOfValidCordinates();
+        if (pieceType.equalsIgnoreCase("pawn")) {
+            List<Cordinate> pawnCoridnates = new ArrayList<Cordinate>();
+            pawnCoridnates.add(allPossibleCordinates.get(0));
+            return pawnCoridnates;
+        }
+        return allPossibleCordinates;
+    }
+
 }
